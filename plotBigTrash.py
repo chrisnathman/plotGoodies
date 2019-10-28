@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import math as math
+import numpy.fft as fft
 
 def generate_data():
     xData = []
@@ -13,6 +14,6 @@ def generate_data():
 
 if __name__ == '__main__':
     data = generate_data()
-    plt.plot(data[0], data[1])
+    plt.plot(data[0], fft.fft(data[1]))
     plt.grid()
     plt.show()
