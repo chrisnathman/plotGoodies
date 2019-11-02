@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import math as math
 import numpy.fft as fft
+import numpy as np
 
 def generate_data():
     xData = []
@@ -8,7 +9,7 @@ def generate_data():
     for i in range(0, 100):
         xData.append(i * 0.1)
         yData.append(math.sin(i * 0.1))
-    data = [xData, yData]
+    data = np.asarray([xData, yData])
     return data
 
 
@@ -26,9 +27,24 @@ if __name__ == '__main__':
     fftData = fft.fft(data[1])
     rfftData = fft.rfft(data[1])
     hfftData = fft.hfft(data[1])
-   # fftFrequencies = fft.fftfreq(data[1])
+    fftFrequencies = fft.rfftfreq(len(data[1]), 0.1)
 
-    plt.plot(data[1])
+#plt.plot(data[1])
+# plt.plot(fftData)
+#plt.plot(rfftData)
+    print(len(fftFrequencies))
+    print(len(rfftData))
+    print(fftFrequencies)
+    print(hfftData)
+
+    magnitudeArray = []
+    for i in range(0, len(rfftData)):
+        magnitudeArray.append(abs(rfftData[i]))
+    magnitudeArray = np.asarray(magnitudeArray)
+    plt.plot(fftFrequencies, magnitudeArray)
+    plt.plot(data[0], data[1])
+
+    plt.legend(['rff', 'original'])
 
     plt.grid()
     plt.show()
