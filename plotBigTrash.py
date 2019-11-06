@@ -7,9 +7,9 @@ import extremaCalculator
 def generate_data():
     xData = []
     yData = []
-    for i in range(0, 100):
+    for i in range(0, 200):
         xData.append(i * 0.1)
-        yData.append(math.sin(i * 0.1) + 0.5*math.sin(i*0.2))
+        yData.append(math.sin(i * 0.1) + 0.5*math.sin(i*0.3))
     data = np.asarray([xData, yData])
     return data
 
@@ -38,7 +38,7 @@ if __name__ == '__main__':
 #    print(fftFrequencies)
 #    print(hfftData)
 
-    extremaIndeces = extremaCalculator.findAllExtrema(data)
+    extremaIndeces = extremaCalculator.findAllExtrema(data[1])
     print(extremaIndeces)
 
     for i, val in enumerate(extremaIndeces[0]):
@@ -49,7 +49,7 @@ if __name__ == '__main__':
         magnitudeArray.append(abs(rfftData[i])/len(rfftData))
     magnitudeArray = np.asarray(magnitudeArray)
 #    plt.plot(fftFrequencies, magnitudeArray)
-#    plt.plot(data[0], data[1])
+    plt.plot(data[0], data[1])
 
     plt.legend(['rff', 'original'])
 
