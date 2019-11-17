@@ -24,19 +24,9 @@ def generate_data():
 if __name__ == '__main__':
     data = generate_data()
 
-    # trying a bunch of different transforms
-    fftData = fft.fft(data[1])
     rfftData = fft.rfft(data[1])
-    hfftData = fft.hfft(data[1])
     fftFrequencies = fft.rfftfreq(len(data[1]), 0.1)
 
-#plt.plot(data[1])
-# plt.plot(fftData)
-#plt.plot(rfftData)
-#    print(len(fftFrequencies))
-#    print(len(rfftData))
-#    print(fftFrequencies)
-#    print(hfftData)
 
     extremaIndeces = extremaCalculator.findAllExtrema(data[1])
     print(extremaIndeces)
